@@ -1,21 +1,22 @@
 function checkInput() {
-    const userInput = document.getElementById("userInput").value;
-    const messageBox = document.getElementById("message");
+    let userInput = document.getElementById("userInput").value;
+    let result = document.getElementById("result");
 
-    // List of malicious patterns (basic examples)
-    const maliciousPatterns = [
-        "<script>", "alert(", "onerror=", "javascript:",
-        "' OR 1=1 --", "DROP TABLE", "SELECT * FROM"
+    // Simple attack patterns (basic SQL injection & XSS detection)
+    let attackPatterns = [
+        /<script.*?>.*?<\/script>/i, // Detects <script> tags
+        /javascript:/i, // Detects javascript: URLs
+        /onload=/i, /onerror=/i, // Detects event-based XSS
+        /(union.*select|select.*from|insert.*into|drop.*table|delete.*from|update.*set)/i // SQL Injection
     ];
 
-    // Check if input contains malicious text
-    let isMalicious = maliciousPatterns.some(pattern => userInput.toLowerCase().includes(pattern.toLowerCase()));
+    let isMalicious = attackPatterns.some(pattern => pattern.test(userInput));
 
     if (isMalicious) {
-        messageBox.innerHTML = "⚠️ Malicious input detected!";
-        messageBox.className = "malicious";
+        result.innerHTML = "🚨 Blocked: Malicious input detected!";
+        result.style.color = "red";
     } else {
-        messageBox.innerHTML = "✅ Input is safe.";
-        messageBox.className = "safe";
+        result.innerHTML = "✅ Safe input.";
+        result.style.color = "green";
     }
 }
