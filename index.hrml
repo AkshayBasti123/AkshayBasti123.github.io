@@ -1,1 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple WAF</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+    <div class="container">
+        <h1>Web Application Firewall (WAF) Demo</h1>
+        <p>Enter text below. The WAF will check for malicious input.</p>
+
+        <input type="text" id="userInput" placeholder="Enter some text...">
+        <button onclick="checkInput()">Check Input</button>
+
+        <p id="result"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
