@@ -1,10 +1,18 @@
-/* General styles */
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #00c6ff, #0072ff);
     color: white;
     text-align: center;
     padding: 20px;
+    background-size: cover;
+    animation: gradientAnimation 5s ease infinite;
+}
+
+/* Add subtle gradient animation */
+@keyframes gradientAnimation {
+    0% { background: linear-gradient(135deg, #00c6ff, #0072ff); }
+    50% { background: linear-gradient(135deg, #ff61a6, #ff48c4); }
+    100% { background: linear-gradient(135deg, #00c6ff, #0072ff); }
 }
 
 /* Main container */
@@ -16,39 +24,58 @@ body {
     width: 50%;
     max-width: 500px;
     margin: auto;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect on container */
+.container:hover {
+    transform: scale(1.05);
 }
 
 /* Input field */
 input {
     width: 80%;
-    padding: 10px;
-    margin: 10px 0;
+    padding: 12px;
+    margin: 12px 0;
     border: 2px solid #0072ff;
     border-radius: 5px;
+    font-size: 16px;
+    transition: border 0.3s ease;
+}
+
+/* Focus effect on input field */
+input:focus {
+    border-color: #005bb5;
+    outline: none;
 }
 
 /* Button */
 button {
     background: #0072ff;
     color: white;
-    padding: 10px 15px;
+    padding: 12px 18px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
+/* Button hover effect */
 button:hover {
     background: #005bb5;
+    transform: scale(1.1);
 }
 
 /* Message Box */
 #message {
     margin-top: 15px;
     font-weight: bold;
-    padding: 10px;
+    padding: 12px;
     border-radius: 5px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Safe message */
@@ -56,6 +83,7 @@ button:hover {
     color: green;
     background: #d4edda;
     border: 2px solid green;
+    font-size: 18px;
 }
 
 /* Malicious message */
@@ -63,4 +91,16 @@ button:hover {
     color: red;
     background: #f8d7da;
     border: 2px solid red;
+    font-size: 18px;
+}
+
+/* Add floating animation to messages */
+.safe, .malicious {
+    animation: floatMessage 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes floatMessage {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
 }
