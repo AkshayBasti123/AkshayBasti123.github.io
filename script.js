@@ -19,4 +19,3 @@ function checkInput() {
         messageBox.className = "safe";
     }
 }
-
